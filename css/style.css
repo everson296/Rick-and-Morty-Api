@@ -1,0 +1,278 @@
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    font-family: arial;
+}
+
+body{
+    background: #111;
+}
+
+
+/* ========================= HEADER ========================= */
+header{
+    height: 130px;
+    width: 100%;
+    
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+    
+}
+
+header h1{
+    width: auto;
+    font-size: 40px;
+    text-transform: uppercase;
+    color: #aefb2a;
+}
+
+#menu{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.itemMenu a{
+    color: #aefb2a;
+    font-size: 18px;
+    letter-spacing: 2px;
+    margin-right: 15px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.itemMenu a:hover{
+    color: #fff;
+}
+
+header input{
+    height: 50px;
+    width: 35%;
+    border-radius: 40px;
+    border: 2px solid #aefb2a;
+    
+    padding-left: 20px;
+    box-sizing: border-box;
+    font-size: 18px;
+    text-transform: capitalize;
+    color: #aefb2a;
+    outline: none;
+    margin-right: 10px;
+    margin-left: 10px;
+    
+    background: transparent;
+    
+    transition: .5s;
+}
+
+/* ========================= CONTAINER ========================= */
+#containerConteudo{
+    height: auto;
+    width: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+    flex-direction: column;
+}
+
+#container{
+    height: auto;
+    width: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#more{
+    height: 50px;
+    width: 90%;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #222;
+    color: #aefb2a;
+    font-size: 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: 1s;
+}
+
+#more:hover{
+    transition: .5s;
+    transform: scale(1.02);
+}
+
+/* ========================= CARD ========================= */
+.card{
+    position: relative;
+    height: 315px;
+    width: 260px;
+    background: #222;
+    
+    margin-bottom: 5px;
+    margin-right: 5px;
+    
+    border-radius: 10px;
+    
+    display: flex;
+    
+    flex-direction: column;
+    padding: 10px;
+    box-sizing: border-box;
+    
+    cursor: pointer;
+    transition: .5s;
+}
+
+.card:hover{
+    transform: scale(1.02);
+    transition: .2s;
+}
+
+.card img{
+    height: auto;
+    width: 100%;
+    
+    border-radius: 10px;
+    
+    margin-bottom: 10px;
+}
+
+/* ------ container informações ------ */
+.containerInfo{
+    height: auto;
+    width: 100%;
+/*
+    padding: 5px;
+    box-sizing: border-box;
+*/
+}
+
+.name{
+    font-size: 18px;
+    color: #fff;
+}
+
+.species{
+    font-size: 14px;
+    color: #737373;
+}
+
+.Alive, .Dead, .unknown{
+    
+    position: absolute;
+    height: auto;
+    width: auto;
+    
+    padding: 3px;
+    
+    border-radius: 5px;
+    
+    font-size: 12px;
+    text-transform: capitalize;
+    
+    font-weight: bold;
+    
+    bottom: 8px;
+    right: 8px;
+    
+} 
+
+.Alive{
+    color: #67eb34;
+    border: 1px solid #67eb34;
+    transition: 1s;
+}
+
+.Dead{
+    color: #ff0000;
+    border: 1px solid #ff0000;
+    transition: 1s;
+}
+
+.unknown{
+    color: #00a2ff;
+    border: 1px solid #00a2ff;
+    transition: 1s;
+}
+
+.Alive:hover{
+    color: #222;
+    background: #67eb34;
+    transition: .5s;
+}
+
+.Dead:hover{
+    color: #222;
+    background: #ff0000;
+    transition: .5s;
+}
+
+.unknown:hover{
+    color: #222;
+    background: #00a2ff;
+    transition: .5s;
+}
+
+/* ========================= RESPONSIVO ========================= */
+
+@media screen and (max-device-width: 600px){
+    
+    body{
+        padding-top: 20px;
+    }
+    
+    header{
+        flex-direction: column;
+        height: auto;
+    }
+    
+    
+    header h1{
+        margin-bottom: 15px;
+    }
+    
+    header input{
+        margin-bottom: 15px;
+    }
+    
+    #menu{
+        margin-bottom: 10px;
+    }
+
+}
+
+/* ========================= FOOTER ========================= */
+footer{
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: #fff;
+    background: #222
+}
+
+
+
+
+
+
+
+
+

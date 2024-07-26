@@ -1,0 +1,48 @@
+/* ========================= CARD LOCAL EPISODIO ========================= */
+.cardEpLocal{
+    height: 130px;
+    width: 300px;
+    border-radius: 10px;
+    background: #222;
+    display: flex;
+
+    flex-direction: column;
+    
+    padding: 10px;
+    padding-top: 15px;
+    box-sizing: border-box;
+    
+    margin-bottom: 5px;
+    margin-right: 5px;
+    position: relative;
+}
+
+.nameEpLocal{
+    font-size: 20px;
+    color: #aefb2a;
+    margin-bottom: 5px;
+}
+
+.typeEpLocal{
+    font-size: 18px;
+    color: #fff;
+}
+
+.epDimension{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    
+    font-size: 16px;
+    color: #949494;
+    border: 2px solid #949494;
+    border-radius: 5px;
+    padding: 2px;
+    transition: 1s;
+}
+
+.epDimension:hover{
+    color: #111;
+    background: #949494;
+    transition: .5s;
+}
