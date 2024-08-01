@@ -14,165 +14,106 @@ const LimparTela = () => {
 
 const CarregarCards = async(url) => {
     LimparTela();
-    
-    const dados = await fetch(url);
-    const info = await dados.json();
 
-    let countCards = info.results.length;
-    let countPages = info.info.pages;
-    const results = info.results;
+    fetch(url)
+    .then(response => {
+        // Verifica se a requisição foi bem-sucedida
+        if (!response.ok) {
+        throw new Error('Erro ao acessar a API: ' + response.status);
+        }
+        // Retorna a resposta em formato JSON
+        return response.json();
+    })
+    .then(data => {
+        // Manipula os dados recebidos da API
+        let countCards = data.results.length;
+        let countPages = data.info.pages;
+        const results = data.results;
 
-    CriarCards(countCards, results, countPages)
+        CriarCards(countCards, results, countPages)
+    })
+    .catch(error => {
+        container.innerHTML = '';
+        count.innerHTML =''
+        container.innerHTML = '<div id="erro"> Este personagem não existe. </div>'        
+    });
 }
 
 const CriarCards = (countCards, info, countPages) => {
-    for(let i = 0; i <= countCards - 1; i++ ){
+    for(let i = 0; i < countCards; i++ ){
         container.innerHTML += `
-            <div id="cardResponse">
-                <img src="${info[i].image}"/>
-                <div id="info">
-                    <div class="itemName"> id </div>
-                    <div class="itemInfo"> ${info[i].id} </div>
+            <div class="card" id="${info[i].id}">
+            <img src="${info[i].image}"/>
 
-                    <div class="itemName"> name </div>
-                    <div class="itemInfo"> ${info[i].name} </div>
-
-                    <div class="itemName"> status </div>
-                    <div class="itemInfo"> ${info[i].status} </div>
-
-                    <div class="itemName"> species </div>
-                    <div class="itemInfo"> ${info[i].species} </div>
-
-                    <div class="itemName"> type </div>
-                    <div class="itemInfo"> ${info[i].type} </div>
-
-                    <div class="itemName"> gender </div>
-                    <div class="itemInfo"> ${info[i].gender} </div>
-
-                    <div class="itemName"> origin </div>
-                    <div class="itemInfo"> ${info[i].origin.name} </div>
-
-                    <div class="itemName"> location </div>
-                    <div class="itemInfo"> ${info[i].location.name} </div>
-
-                </div>
+            <div class="containerInfo">
+                <div class="name"> ${info[i].name} </div>
+                <div class="species"> ${info[i].species}  </div>
+                <div class="${info[i].status}"> ${info[i].status} <div/>
             </div>
+        <div/>
         `;
     }
-    
-    for(let i = 1; i <= countPages; i++ ){
+
+    document.querySelectorAll('#containerResponse .card').forEach(item => {
+        const infoCard = document.querySelector('.containerInfoCard');
+        const urlCharacter = "https://rickandmortyapi.com/api/character/";
+        item.onclick = async(e) => {
+
+            const dados = await fetch(`${urlCharacter}${item.id}`);
+            const info = await dados.json();
+                
+            const infoType = () => {
+                if(info.type === ''){
+                    return 'unknown'
+                }else{
+                    return info.type
+                }
+            }
+                
+            infoCard.style.display = 'flex'
+            infoCard.innerHTML=`
+                <div id="left">
+                    <img src="${info.image}"/>
+                </div>
+
+                <div id="right">
+                    <div class="nameClose">
+                        <div> ${info.name} </div>
+                        <i id="btnClose" class="fa-solid fa-xmark"></i> 
+                    </div>
+                    <div class="infoItems"> <span> id </span> <p>${info.id}</p> </div>
+                    <div class="infoItems"> <span> gender </span> <p>${info.gender}</p> </div>
+                    <div class="infoItems"> <span> status </span> <p>${info.status}</p> </div>
+                    <div class="infoItems"> <span> specie </span> <p>${info.species}</p> </div>
+                    <div class="infoItems"> <span> type </span> <p>${infoType()}</p> </div>
+                    <div class="infoItems"> <span> origin </span> <p>${info.origin.name}</p> </div>
+                </div>
+            `;
+
+            document.getElementById('btnClose').addEventListener('click', () => {
+                infoCard.style.display = 'none'
+            })
+        }
+    })  
+
+    count.innerHTML =''
+    for(let c = 1; c <= countPages; c++){
         count.innerHTML += `
-            <li class="teste"> ${i} </li>
-        `;
+            <li id="${c}">${c}</li>
+        `
     }
-    
-    let teste = document.querySelectorAll(".teste");
-    
-    for(let j = 1; j <= countPages; j++ ){
-        
-        teste[j].addEventListener('click', () => {
-            alert('ola')
-            console.log('ola')
+
+    document.querySelectorAll('#count li').forEach(linkItem => {
+        linkItem.addEventListener('click', () => {
+            const urlPage = `https://rickandmortyapi.com/api/character/?page=${linkItem.id}&name=${user.value}`
+            CarregarCards(urlPage)
         })
-    }    
-    
-    
+    })
 }
 
-//user.addEventListener('blur', () => {
-//    LimparTela()
-//    let urlUser = url + user.value;
-//    CarregarCards(urlUser)
-//})
-
-const inicio = () => {
-    LimparTela()
+user.addEventListener('keypress', (event) => {
+  if (event.key === 'Enter') {
     let urlUser = url + user.value;
     CarregarCards(urlUser)
-
-}
-
-inicio()
-
-
-//teste.addEventListener('click', () => {
-//    alert(e)
-//})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  }
+});

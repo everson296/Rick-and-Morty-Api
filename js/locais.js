@@ -22,10 +22,13 @@ const CriarCard = (info) => {
 const CarregarCard = async() => {
     LimparCards()
     
-    for( let i = 1; i <= cont; i++ ){
-
+    const dados = await fetch(`${url}`);
+    const info = await dados.json();
+    
+    for( let i = 1; i <= info.info.count; i++ ){
         const dados = await fetch(`${url}${i}`);
         const info = await dados.json();
+
         CriarCard(info)   
     }
 }
